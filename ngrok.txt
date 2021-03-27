@@ -1,0 +1,6 @@
+
+ngrok http -auth="username:password" -bind-tls=true 8000 (solo https, puerto 8000, usuario y password)
+start /min node server.js
+
+url de ejemplo para setear en twilio:
+https://username:password@821fc118ff74.ngrok.io/sms
