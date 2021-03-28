@@ -226,6 +226,107 @@ function formResponseHidden(text, context, sessionId, lifespanCount = 1, proyect
 }
 
 /*
+SI NO
+*/
+function suggestionChipsResponseYesNo(text, context, sessionId, lifespanCount = 1, proyectId = "cobra-lijklx") {
+  return {"outputContexts": [
+    {
+      "name": `projects/${proyectId}/agent/sessions/${sessionId}/contexts/${context}`,
+      "lifespanCount": lifespanCount
+    }],
+  "fulfillmentMessages": [
+    {
+      "payload": {
+        "message": text,
+        "platform": "kommunicate",
+        "metadata": {
+          "contentType": "300",
+          "templateId": "6",
+          "payload": [{
+            "title": "Si",
+            "message": "Si"
+          }, {
+            "title": "No",
+            "message": "No"
+          }]
+        }
+      }
+    }
+  ],
+}
+}
+
+
+function suggestionChipsResponseAreas(text, context, sessionId, lifespanCount = 1, proyectId = "cobra-lijklx") {
+  return {"outputContexts": [
+    {
+      "name": `projects/${proyectId}/agent/sessions/${sessionId}/contexts/${context}`,
+      "lifespanCount": lifespanCount
+    }],
+  "fulfillmentMessages": [
+    {
+      "payload": {
+        "message": text,
+        "platform": "kommunicate",
+        "metadata": {
+          "contentType": "300",
+          "templateId": "6",
+          "payload": [{
+            "title": "Ventas",
+            "message": "Ventas"
+          }, {
+            "title": "Contabilidad",
+            "message": "Contabilidad"
+          }, {
+            "title": "RRHH",
+            "message": "RRHH"
+          }, {
+            "title": "Bodegas",
+            "message": "Bodegas"
+          }, {
+            "title": "Compras",
+            "message": "Compras"
+          }]
+        }
+      }
+    }
+  ],
+}
+}
+
+function suggestionChipsResponseCargosVentas(text, context, sessionId, lifespanCount = 1, proyectId = "cobra-lijklx") {
+  return {"outputContexts": [
+    {
+      "name": `projects/${proyectId}/agent/sessions/${sessionId}/contexts/${context}`,
+      "lifespanCount": lifespanCount
+    }],
+  "fulfillmentMessages": [
+    {
+      "payload": {
+        "message": text,
+        "platform": "kommunicate",
+        "metadata": {
+          "contentType": "300",
+          "templateId": "6",
+          "payload": [{
+            "title": "Vendedor telefonico",
+            "message": "Vendedor telefonico"
+          }, {
+            "title": "Vendedor online",
+            "message": "Vendedor online"
+          }, {
+            "title": "Vendedor terreno",
+            "message": "Vendedor terreno"
+          }]
+        }
+      }
+    }
+  ],
+}
+}
+
+
+/*
 *Interección con API de MC
 */
 function sendRemplazo(rut, sessionId) { return sender.sendRemplazo(rut,sessionId) }
@@ -246,6 +347,9 @@ module.exports = {
   sendDate,
   sendDesbloqueo,
   formResponse,
-  formResponseHidden
+  formResponseHidden,
+  suggestionChipsResponseYesNo,
+  suggestionChipsResponseAreas,
+  suggestionChipsResponseCargosVentas
 }
 

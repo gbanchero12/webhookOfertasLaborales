@@ -27,8 +27,13 @@ const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 // time.
 const TOKEN_PATH = './googleSheets/token.json';
 
-const CELLS_ENTITIES = "B3:I12";
-const CELLS_RESPONSES = "B15:K24";
+let SHEET = "Sheet1!";
+
+const CELLS_ENTITIES = `${SHEET}B3:K10`;
+const CELLS_RESPONSES = `${SHEET}B14:K21`;
+
+const CELLS_SELLERS = `B14:K21`;
+const CELLS_JOBS = `M14:M21`;
 
 let entities = [];
 let responses = [];
