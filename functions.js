@@ -30,7 +30,7 @@ function basicResponse(text, context, sessionId, lifespanCount = 1, proyectId = 
   return respuesta;
 }
 /*
-*Respuesa para generar formulario con 2 fechas
+*Respuesa para generar formulario con 1 fecha
 */
 function datePikerResponse(text, context, sessionId, lifespanCount = 1, proyectId = "cobra-lijklx") {
   return {
@@ -50,19 +50,11 @@ function datePikerResponse(text, context, sessionId, lifespanCount = 1, proyectI
               {
                 "type": "date",
                 "data": {
-                  "label": "Fecha Inicio",
-                  "name": "fechaInicio",
+                  "label": "Fecha de nacimiento:",
+                  "name": "fechaNacimiento",
                   "validation": { "errorText": "Field is mandatory" }
                 }
-              },
-              {
-                "type": "date",
-                "data": {
-                  "label": "Fecha Final",
-                  "name": "fechaFinal",
-                  "validation": { "errorText": "Field is mandatory" }
-                }
-              },
+              },              
               {
                 "data": {
                   "action": {

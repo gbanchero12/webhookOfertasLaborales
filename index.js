@@ -69,35 +69,24 @@ const processResponse = async (req, res) => {
         }
 
         if (ACTION === "DWI.1") {
-            const index = 1;                    //caseArea()
-            cached.map[request.SESSION_ID] = [0,undefined]
+            const index = 1;                //caseArea()
+            cached.hash[request.SESSION_ID] = [0,undefined]
             respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, 0, "DWI-1-followup");
             
         }
 
-        if (ACTION === "DWI.2") { //guardo el cargo
-            let session = cached.map[request.SESSION_ID];
-            cached.map[request.SESSION_ID] = [session[0],caseCargo(request.TEXT)];   
+        if (ACTION === "DWI.2") { 
+            let session = cached.hash[request.SESSION_ID];   //guardo el cargo:
+            cached.hash[request.SESSION_ID] = [session[0],caseCargo(request.TEXT)];   
                    
             let cargoIndex = caseCargo(request.TEXT);
             const index = 2;
             respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-followup");
         }
 
-        if (ACTION === "DWI.3") {
-            let session = cached.map[request.SESSION_ID];
-            let cargoIndex = session[1];
-                console.log(session)
-            const index = 3;
-            respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-followup");
-        }
+        normalPath(res, entities_rows, text_rows, SESSION_ID, request);
 
-        if (ACTION === "DWI.4") {
-            let session = cached.map[request.SESSION_ID];
-            let cargoIndex = session[1];
-            const index = 4;
-            respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-4-followup");
-        }
+        
 
 
     } catch (error) {
@@ -128,6 +117,9 @@ const orchestrateEntity = (res, entities_rows, text_rows, SESSION_ID, index, car
         case "SINO":
             respuesta = functions.suggestionChipsResponseYesNo(textResponse.replace(/\n/g, ' '), context, SESSION_ID, 1);
             break;
+        case "Fecha_Nacimiento":
+            respuesta = functions.datePikerResponse(textResponse.replace(/\n/g, ' '), context, SESSION_ID, 1);
+            break;
         default:
             respuesta = functions.basicResponse(textResponse.replace(/\n/g, ' '), context, SESSION_ID, 1);
 
@@ -147,6 +139,70 @@ function caseCargo(cargo) {
         case "Vendedor terreno":
             return 2;
     }
+}
+
+const normalPath = (res, entities_rows, text_rows, SESSION_ID, request) => {
+
+    let respuesta;
+
+    if (request.ACTION === "DWI.3") {
+        let session = cached.hash[request.SESSION_ID];
+        let cargoIndex = session[1];
+            console.log(session)
+        const index = 3;
+        respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-followup");
+    }
+
+    if (request.ACTION === "DWI.4") {
+        let session = cached.hash[request.SESSION_ID];
+        let cargoIndex = session[1];
+        const index = 4;
+        respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-4-followup");
+    }
+
+    if (request.ACTION === "DWI.5") {
+        let session = cached.hash[request.SESSION_ID];
+        let cargoIndex = session[1];
+        const index = 5;
+        respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-4-5-followup");
+    }
+
+    if (request.ACTION === "DWI.6") {
+        let session = cached.hash[request.SESSION_ID];
+        let cargoIndex = session[1];
+        const index = 6;
+        respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-4-5-6-followup");
+    }
+
+    if (request.ACTION === "DWI.7") {
+        let session = cached.hash[request.SESSION_ID];
+        let cargoIndex = session[1];
+        const index = 7;
+        respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-4-5-6-7-followup");
+    }
+
+    if (request.ACTION === "DWI.8") {
+        let session = cached.hash[request.SESSION_ID];
+        let cargoIndex = session[1];
+        const index = 8;
+        respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-4-5-6-7-8-followup");
+    }
+
+    if (request.ACTION === "DWI.9") {
+        let session = cached.hash[request.SESSION_ID];
+        let cargoIndex = session[1];
+        const index = 9;
+        respuesta = orchestrateEntity(res, entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-4-5-6-7-8-9-followup");
+    }
+
+    if (request.ACTION === "DWI.10") {
+        let session = cached.hash[request.SESSION_ID];
+        let cargoIndex = session[1];
+        const index = 10;
+        respuesta = functions.basicResponse("Su solicitud fue enviada", entities_rows, text_rows, SESSION_ID, index, cargoIndex, "DWI-1-2-3-4-5-6-7-8-9-10-followup");
+    }
+
+    return res.status(200).json(respuesta);
 }
 
 

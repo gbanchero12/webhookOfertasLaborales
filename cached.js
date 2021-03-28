@@ -3,9 +3,9 @@
 *
 */
 
-const map = new Array();
+const hash = new Array();
 
 module.exports = {
-    map
+    hash
 }
 
