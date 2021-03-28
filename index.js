@@ -30,7 +30,7 @@ server.post("/", async (req, res) => {
 
 
 
-!process.env.LOCAL ? server.listen(8000) : server.listen(8000);
+process.env.LOCAL ? server.listen(process.env.PORT) : server.listen(8000);
 
 
 
