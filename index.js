@@ -114,7 +114,7 @@ const orchestrateEntity = (res, entities_rows, text_rows, SESSION_ID, index, car
         case "CARGO":
             respuesta = functions.suggestionChipsResponseCargosVentas(textResponse.replace(/\n/g, ' '), context, SESSION_ID, 1);
             break;
-        case "SINO":
+        case "SI":
             respuesta = functions.suggestionChipsResponseYesNo(textResponse.replace(/\n/g, ' '), context, SESSION_ID, 1);
             break;
         case "Fecha_Nacimiento":

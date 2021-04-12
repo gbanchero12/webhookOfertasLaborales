@@ -237,9 +237,6 @@ function suggestionChipsResponseYesNo(text, context, sessionId, lifespanCount = 
           "payload": [{
             "title": "Si",
             "message": "Si"
-          }, {
-            "title": "No",
-            "message": "No"
           }]
         }
       }
